@@ -210,7 +210,12 @@ CREATE TABLE menu_detail (
 
 
 INSERT INTO menu_detail values
-(6, '納豆軍艦', 80)
+(1, 'まぐろ赤身', 1)
+,(2, '玉子', 1)
+,(3, '納豆軍艦', 1)
+,(4, 'ゆでげそ', 1)
+,(5, '中トロ', 1)
+,(6, '納豆軍艦', 80)
 ,(6, 'まぐろ赤身', 4)
 ;
 
@@ -219,23 +224,21 @@ INSERT INTO menu_detail values
 
 -- 課題2 検証
 -- 売れている寿司ネタ
-
-WITH single_menu AS (
-  /* セットメニュ-を単品に分解 */
+WITH ods AS (
   SELECT
-    menu.id
-    ,md.single_menu_name
-    ,md.count
-  FROM menu_detail md
-  LEFT JOIN menu
-  ON md.menu_id = menu.id
+    od.menu_id
+    ,menu.name
+    ,od.count_dishes
+  FROM order_details od
+  INNER JOIN menu
+  ON od.menu_id = menu.id
 )
-/* セットメニュー内の各ネタ×注文されたの数量を求める */
 SELECT
-  sm.single_menu_name '寿司ネタ'
-  ,sum(sm.count * od.count_dishes) '合計皿数'
-FROM single_menu sm
-LEFT JOIN order_details od
-ON sm.id = od.menu_id
-GROUP BY sm.single_menu_name
+  md.single_menu_name '寿司ネタ'
+  ,sum(ods.count_dishes * md.count) '合計皿数'
+FROM ods
+LEFT JOIN menu_detail md
+ON ods.menu_id = md.menu_id
+GROUP BY md.single_menu_name
+ORDER BY sum(ods.count_dishes * md.count) desc
 ;
