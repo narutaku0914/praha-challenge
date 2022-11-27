@@ -38,12 +38,12 @@
 
 ## 課題 1 検証
 
-手入力と集計の照合
+手入力と集計の照合  
 ![](./images/issue4_verified_issue1.png)
 
 <details><summary>SQL</summary>
 
-```
+```sql
 -- 注文テーブル
 CREATE TABLE orders (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
@@ -165,12 +165,12 @@ GROUP BY tmp.id
 
 ## 課題 2 検証
 
-寿司ネタごとの売り上げ
+寿司ネタごとの売り上げ  
 ![](./images/issue4_verified_issue2.png)
 
 <details><summary>SQL</summary>
 
-```
+```sql
 -- 注文テーブル
 CREATE TABLE orders (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
