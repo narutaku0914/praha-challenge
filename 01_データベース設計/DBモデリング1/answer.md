@@ -46,6 +46,13 @@
 
 # 課題 4
 
+## レビュー後修正
+
+- 不必要な AUTO INCREMENT の削除  
+  　https://zenn.dev/praha/articles/3c84e3818891c3
+- 税率のデータ定義  
+  　 FLOAT→DECIMAL(丸め誤差回避のため)
+
 ## 課題 1 検証
 
 手入力と集計の照合  
@@ -56,7 +63,9 @@
 ```sql
 -- 注文テーブル
 CREATE TABLE orders (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- AUTO_INCREMENTの削除
+  id INT NOT NULL PRIMARY KEY
   ,customer_id INT
   ,total_count INT
   ,total_amount INT
@@ -74,7 +83,9 @@ INSERT INTO orders values
 
 -- 注文詳細テーブル
 CREATE TABLE order_details (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- AUTO_INCREMENTの削除
+  id INT NOT NULL PRIMARY KEY
   ,order_id INT
   ,menu_id INT
   ,count_dishes INT
@@ -92,7 +103,9 @@ INSERT INTO order_details values
 
 -- 顧客マスタ
 CREATE TABLE customer (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- AUTO_INCREMENTの削除
+  id INT NOT NULL PRIMARY KEY
   ,name VARCHAR(16)
   -- ,phone_number VARCHAR(13)
   -- 余裕を持って20に変更
@@ -188,7 +201,9 @@ GROUP BY tmp.id
 ```sql
 -- 注文テーブル
 CREATE TABLE orders (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- AUTO_INCREMENTの削除
+  id INT NOT NULL PRIMARY KEY
   ,customer_id INT
   ,total_count INT
   ,total_amount INT
@@ -206,7 +221,9 @@ INSERT INTO orders values
 
 -- 注文詳細テーブル
 CREATE TABLE order_details (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- AUTO_INCREMENTの削除
+  id INT NOT NULL PRIMARY KEY
   ,order_id INT
   ,menu_id INT
   ,count_dishes INT
@@ -224,7 +241,9 @@ INSERT INTO order_details values
 
 -- 顧客マスタ
 CREATE TABLE customer (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- AUTO_INCREMENTの削除
+  id INT NOT NULL PRIMARY KEY
   ,name VARCHAR(16)
   -- ,phone_number VARCHAR(13)
   -- 余裕を持って20に変更

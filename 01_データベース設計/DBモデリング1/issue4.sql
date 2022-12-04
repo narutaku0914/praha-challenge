@@ -1,7 +1,9 @@
 /* =================== 課題1 ====================*/
 -- 注文テーブル
 CREATE TABLE orders (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- AUTO_INCREMENTの削除
+  id INT NOT NULL PRIMARY KEY
   ,customer_id INT
   ,total_count INT
   ,total_amount INT
@@ -19,7 +21,9 @@ INSERT INTO orders values
 
 -- 注文詳細テーブル
 CREATE TABLE order_details (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- AUTO_INCREMENTの削除
+  id INT NOT NULL PRIMARY KEY
   ,order_id INT
   ,menu_id INT
   ,count_dishes INT
@@ -121,7 +125,9 @@ GROUP BY tmp.id
 /* =================== 課題2 ====================*/
 -- 注文テーブル
 CREATE TABLE orders (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- AUTO_INCREMENTの削除
+  id INT NOT NULL PRIMARY KEY
   ,customer_id INT
   ,total_count INT
   ,total_amount INT
@@ -139,7 +145,9 @@ INSERT INTO orders values
 
 -- 注文詳細テーブル
 CREATE TABLE order_details (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  -- AUTO_INCREMENTの削除
+  id INT NOT NULL PRIMARY KEY
   ,order_id INT
   ,menu_id INT
   ,count_dishes INT
