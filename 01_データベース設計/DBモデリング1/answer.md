@@ -17,7 +17,7 @@
 
 # 課題 3
 
-![](./images/issue3.png)
+![](./images/issue3_修正後.png)
 
 ## 追加仕様
 
@@ -30,10 +30,19 @@
 
 ## ポイント
 
-- スタンプ付与対象の注文がわかる様、スタンプ付与フラグを追加
+~~スタンプ付与対象の注文がわかる様、スタンプ付与フラグを追加~~
+
 - スタンプ付与が発生したタイミングで、「スタンプカードマスタ」の「獲得スタンプ数」更新
 - クーポンに関しては、1 回のクーポン獲得に対し、1 レコードで。  
   クーポンを使用した際に、残数を更新していく形式。
+
+## レビュー後修正
+
+- 注文履歴から「スタンプ付与フラグ」を削除  
+  　 → 想定している仕様では不要なカラムのため
+- クーポンマスタの結合関係を変更(赤字部分)  
+  スタンプカードマスタ(スタンプカード ID) → 顧客マスタ(顧客 ID)  
+  →「顧客が所有しているクーポンを一覧表示」する点で、顧客に紐づけた方がシンプルになるため
 
 # 課題 4
 
@@ -85,7 +94,9 @@ INSERT INTO order_details values
 CREATE TABLE customer (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
   ,name VARCHAR(16)
-  ,phone_number VARCHAR(13)
+  -- ,phone_number VARCHAR(13)
+  -- 余裕を持って20に変更
+  ,phone_number VARCHAR(20)
 );
 
 INSERT INTO customer value
@@ -99,7 +110,9 @@ INSERT INTO customer value
 -- 税率マスタ
 CREATE TABLE tax (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
-  ,rate FLOAT
+  -- ,rate FLOAT
+  -- 丸め誤差回避のため、decimalで定義
+  ,rate DECIMAL
   ,start_date_jst DATE
   ,end_date_jst DATE
 );
@@ -142,8 +155,9 @@ WITH tmp AS (
   FROM orders
   INNER JOIN customer
   ON orders.customer_id = customer.id
-  INNER JOIN tax
-  ON orders.tax_id = tax.id
+  -- 不要な結合
+  -- INNER JOIN tax
+  -- ON orders.tax_id = tax.id
 )
 SELECT
   tmp.id
@@ -212,7 +226,9 @@ INSERT INTO order_details values
 CREATE TABLE customer (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
   ,name VARCHAR(16)
-  ,phone_number VARCHAR(13)
+  -- ,phone_number VARCHAR(13)
+  -- 余裕を持って20に変更
+  ,phone_number VARCHAR(20)
 );
 
 INSERT INTO customer value
@@ -226,7 +242,9 @@ INSERT INTO customer value
 -- 税率マスタ
 CREATE TABLE tax (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
-  ,rate FLOAT
+  -- ,rate FLOAT
+  -- 丸め誤差回避のため、decimalで定義
+  ,rate DECIMAL
   ,start_date_jst DATE
   ,end_date_jst DATE
 );

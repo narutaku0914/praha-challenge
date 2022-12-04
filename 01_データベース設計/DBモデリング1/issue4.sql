@@ -39,7 +39,9 @@ INSERT INTO order_details values
 CREATE TABLE customer (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
   ,name VARCHAR(16)
-  ,phone_number VARCHAR(13)
+  -- ,phone_number VARCHAR(13)
+  -- 余裕を持って20に変更
+  ,phone_number VARCHAR(20)
 );
 
 INSERT INTO customer value
@@ -53,7 +55,9 @@ INSERT INTO customer value
 -- 税率マスタ
 CREATE TABLE tax (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
-  ,rate FLOAT
+  -- ,rate FLOAT
+  -- 丸め誤差回避のため、decimalで定義
+  ,rate DECIMAL
   ,start_date_jst DATE
   ,end_date_jst DATE
 );
@@ -155,7 +159,9 @@ INSERT INTO order_details values
 CREATE TABLE customer (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
   ,name VARCHAR(16)
-  ,phone_number VARCHAR(13)
+  -- ,phone_number VARCHAR(13)
+  -- 余裕を持って20に変更
+  ,phone_number VARCHAR(20)
 );
 
 INSERT INTO customer value
@@ -169,7 +175,9 @@ INSERT INTO customer value
 -- 税率マスタ
 CREATE TABLE tax (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
-  ,rate FLOAT
+  -- ,rate FLOAT
+  -- 丸め誤差回避のため、decimalで定義
+  ,rate DECIMAL
   ,start_date_jst DATE
   ,end_date_jst DATE
 );
